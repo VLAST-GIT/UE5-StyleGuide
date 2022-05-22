@@ -39,11 +39,9 @@
 - [**01. 금지된 사항들**](#01-금지된-사항들)
   - [01.1 금지된 문자](#011-금지된-문자)
 - [**02. 엔진 기본 Config 설정**](#02-엔진-기본-config-설정)
-  - [02.1 BaseEngine.ini](#021-baseengineini)
-    - [02.1.1 공유 DCC 설정](#0211-공유-dcc-설정)
-  - [02.2 BaseEditorPerProjectUserSettings.ini](#022-baseeditorperprojectusersettingsini)
-    - [02.2.1 Developers 폴더 사용 편의를 위한 설정](#0221-developers-폴더-사용-편의를-위한-설정)
-    - [02.2.2 블루프린트 코딩 표준 준수를 위한 설정](#0222-블루프린트-코딩-표준-준수를-위한-설정)
+  - [02.1 BaseEditorPerProjectUserSettings.ini](#022-baseeditorperprojectusersettingsini)
+    - [02.1.1 Developers 폴더 사용 편의를 위한 설정](#0221-developers-폴더-사용-편의를-위한-설정)
+    - [02.1.2 블루프린트 코딩 표준 준수를 위한 설정](#0222-블루프린트-코딩-표준-준수를-위한-설정)
 - [**1. 에셋 명명 규칙**](#1-에셋-명명-규칙)
   - [1.1 에셋명 기본 형식: `접두사_기본에셋명_세부변형_접미사`](#11-에셋명-기본-형식-접두사_기본에셋명_세부변형_접미사)
     - [1.1 에셋 명명 예](#11의-예시들)
@@ -319,27 +317,9 @@
 > UE5 Config파일 경로 예시  
 > C:\Program Files\Epic Games\UE_5.0\Engine\Config
 
-### 02.1 BaseEngine.ini
+### 02.1 BaseEditorPerProjectUserSettings.ini
 
-#### 02.1.1 공유 DCC 설정
-
-사내 네트워크에 연결되어있는 PC의 경우, 셰이더를 새로 컴파일하는 속도보다 네트워크를 통해 공유받는 속도가 더 빠릅니다.  
-사무실 내의 PC 중 한 대만 셰이더 컴파일을 해두면 다른 PC들은 셰이더 컴파일을 할 필요가 없도록 공유 DCC 경로를 설정해줍니다.  
-
-재택근무 등 사무실 네트워크 외의 환경에서는 로컬 컴파일이 빠르므로 설정하지 않습니다.
-
-> `BaseEngine.ini` 파일 내의 다음 구문 변경
->
-> `Ctrl + F`로 `InstalledDerivedDataBackendGraph` 검색한 뒤,
-> 
-> `Local=` 라인의 `Path="%ENGINEVERSIONAGNOSTICUSERDIR%DerivedDataCache"` 라인을 다음과 같이 변경.  
-> Path="`공유 DCC 경로`"   
-> 
-> *DCC 경로는 VLAST 문서 위키에 있음*
-
-### 02.2 BaseEditorPerProjectUserSettings.ini
-
-#### 02.2.1 [Developers 폴더](#23-로컬-테스트는-developers-폴더-내에서-해야합니다) 사용 편의를 위한 설정
+#### 02.1.1 [Developers 폴더](#23-로컬-테스트는-developers-폴더-내에서-해야합니다) 사용 편의를 위한 설정
 
 `Developers` 폴더를 언제나 개인화된 실험실로 사용할 수 있게 보장해주기 위한 설정입니다. 자세한 내용은 [Developers 폴더](#23-로컬-테스트는-developers-폴더-내에서-해야합니다) 항목 참조. 
 
@@ -348,7 +328,7 @@
 > `Ctrl + F`로 `bSCCAutoAddNewFiles` 검색한 뒤, `True`를 `False`로 변경.  
 > `bSCCAutoAddNewFiles=False` 저장
 
-#### 02.2.2 [블루프린트 코딩 표준](#3-블루프린트-코딩-표준) 준수를 위한 설정
+#### 02.1.2 [블루프린트 코딩 표준](#3-블루프린트-코딩-표준) 준수를 위한 설정
 
 엔지니어, 테크니컬 아티스트 등 블루프린트 협업 빈도가 높은 팀원들의 [블루프린트 코딩 표준](#3-블루프린트-코딩-표준) 준수 과정에서의 [혼란](#시작하기-전)을 없애기 위한 설정입니다.  
 
