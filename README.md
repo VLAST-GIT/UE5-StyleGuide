@@ -1587,32 +1587,32 @@ GPU와 게임엔진은 2의 거듭제곱 크기를 가진 텍스처 처리에 �
 
 ## 8. 캐릭터 (리깅)
 
-### 8.1 모든 캐릭터는 에픽 표준 본 구조를 따라 리깅되어야 합니다.
+### 8.1 모든 캐릭터는 메타휴먼 본 구조를 따라 리깅되어야 합니다.
 
-캐릭터의 `본 구조`, `본 방향`, `본 이름`은 에픽 표준을 따라 똑같이 제작되어야 합니다. `본 구조`는 일부가 캐릭터마다 조금씩 다를 수도 있지만, 핵심 뼈대의 `본 방향`과 `본 이름`은 반드시 일치해야 합니다.
+캐릭터의 `본 구조`, `본 방향`, `본 이름`은 메타휴먼 캐릭터와 똑같이 제작되어야 합니다. 
 
 에픽 표준 캐릭터 예시는 `UE5 3인칭 캐릭터 템플릿`과 `메타휴먼 샘플 프로젝트` 내의 캐릭터를 참고하시면 됩니다. 
 
 에픽의 표준 본 구조를 따르면 개발하는 모든 기능이 메타 휴먼 캐릭터와 쉽게 호환될 수 있으며, 역으로 에픽이 제공하는 컨트롤 리그나 애니메이션 등 여러 템플릿을 사내 캐릭터에 적용하는 것도 쉬워집니다.
 
-*에픽 표준 본 구조 예시:*
+*메타휴먼 표준 본 구조 중 필수 본 목록:*
 <pre>
 |-- root
   |-- pelvis
     |-- spine_01
     : |-- spine_02
-    :   |-- spine_03 <a href="#asdf">선택적 본, 캐릭터에 따라 없을 수 있음</a>
-    :     |-- spine_04 <a href="#asdf">선택적 본, 캐릭터에 따라 없을 수 있음</a>
-    :       |-- spine_05 <a href="#asdf">spine 본이 5개 미만이더라도, chest 위치의 spine 본 이름은 "spine_05" 가 되어야 합니다.</a>
+    :   |-- spine_03 
+    :     |-- spine_04 
+    :       |-- spine_05 
     :         |-- clavicle_l
     :         : |-- upperarm_l 
     :         :   |-- upperarm_twist_01_l
     :         :   |-- upperarm_twist_02_l
-    :         :   |-- upperarm_twist_03_l <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    :         :   |-- upperarm_twist_03_l 
     :         :   |-- lowerarm_l
     :         :     |-- lowerarm_twist_01_l
     :         :     |-- lowerarm_twist_02_l
-    :         :     |-- lowerarm_twist_03_l <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    :         :     |-- lowerarm_twist_03_l 
     :         :     |-- hand_l
     :         :       |-- index_01_l
     :         :         |-- index_02_l
@@ -1633,11 +1633,11 @@ GPU와 게임엔진은 2의 거듭제곱 크기를 가진 텍스처 처리에 �
     :         : |-- upperarm_r
     :         :   |-- upperarm_twist_01_r
     :         :   |-- upperarm_twist_02_r
-    :         :   |-- upperarm_twist_03_r <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    :         :   |-- upperarm_twist_03_r 
     :         :   |-- lowerarm_r
     :         :     |-- lowerarm_twist_01_r
     :         :     |-- lowerarm_twist_02_r
-    :         :     |-- lowerarm_twist_03_r <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    :         :     |-- lowerarm_twist_03_r 
     :         :     |-- hand_r
     :         :       |-- index_01_r
     :         :         |-- index_02_r
@@ -1655,22 +1655,22 @@ GPU와 게임엔진은 2의 거듭제곱 크기를 가진 텍스처 처리에 �
     :         :         |-- thumb_02_r
     :         :           |-- thumb_03_r                          
     :         |-- neck_01
-    :           |-- neck_02 <a href="#asdf">선택적 본, 캐릭터에 따라 없을 수 있음</a>
+    :           |-- neck_02 
     :             |-- head
     |-- thigh_l
     : |-- thigh_twist_01_l
-    : |-- thigh_twist_02_l <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    : |-- thigh_twist_02_l 
     : |-- calf_l
     :   |-- calf_twist_01_l
-    :   |-- calf_twist_02_l <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+    :   |-- calf_twist_02_l 
     :   |-- foot_l
     :     |-- ball_l
     |-- thigh_r
       |-- thigh_twist_01_r
-      |-- thigh_twist_02_r <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+      |-- thigh_twist_02_r 
       |-- calf_r
         |-- calf_twist_01_r
-        |-- calf_twist_02_r <a href="#asdf">01부터 존재하는 twist 본 갯수만큼 넘버링</a>
+        |-- calf_twist_02_r 
         |-- foot_r
           |-- ball_r          
 </pre>
