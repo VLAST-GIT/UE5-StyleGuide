@@ -1589,13 +1589,15 @@ GPU와 게임엔진은 2의 거듭제곱 크기를 가진 텍스처 처리에 �
 
 ### 8.1 모든 캐릭터는 메타휴먼 본 구조를 따라 리깅되어야 합니다.
 
-캐릭터의 `본 구조`, `본 방향`, `본 이름`은 메타휴먼 캐릭터와 똑같이 제작되어야 합니다. 
+VLAST는 메타휴먼을 커스텀한 자체적인 캐릭터 표준 본 구조를 가지고 있습니다.  
+  
+메타휴먼 표준 스켈레톤 에셋은 UE5 에디터 내에서 퀵셀 브릿지를 통해 메타휴먼 캐릭터를 추가한 뒤, 아래 경로에서 찾을 수 있습니다.
+`프로젝트명/Content/MetaHumans/Common/Female/Medium/NormalWeight/Body/metahuman_base_skel.uasset`
 
-에픽 표준 캐릭터 예시는 `UE5 3인칭 캐릭터 템플릿`과 `메타휴먼 샘플 프로젝트` 내의 캐릭터를 참고하시면 됩니다. 
+VLAST 자체 표준은 메타휴먼 표준 본 구조에서 밴딩 컨트롤리그 지원을 위해 트위스트 본 갯수가 추가되었으며, 모프타겟(블렌드쉐입) 용도로 사용되는 본들이 필수 본에서 제거된 형태입니다. 자세한 본 구조는 아래 경로에서 찾을 수 있습니다.  
+`프로젝트명/Content/VLAST/Core/CharacterSystem/Meshes/SKM_VLAST_Standard.uasset`
 
-에픽의 표준 본 구조를 따르면 개발하는 모든 기능이 메타 휴먼 캐릭터와 쉽게 호환될 수 있으며, 역으로 에픽이 제공하는 컨트롤 리그나 애니메이션 등 여러 템플릿을 사내 캐릭터에 적용하는 것도 쉬워집니다.
-
-*메타휴먼 표준 본 구조 중 필수 본 목록:*
+*SKM_VLAST_Standard 필수 본 구조:*
 <pre>
 |-- root
   |-- pelvis
@@ -1606,74 +1608,78 @@ GPU와 게임엔진은 2의 거듭제곱 크기를 가진 텍스처 처리에 �
     :       |-- spine_05 
     :         |-- clavicle_l
     :         : |-- upperarm_l 
+    :         :   |-- upperarm_correctiveRoot_l
+    :         :   |-- upperarm_twist_front_l
     :         :   |-- upperarm_twist_01_l
+    :         :   |-- upperarm_twist_middle_l
     :         :   |-- upperarm_twist_02_l
-    :         :   |-- upperarm_twist_03_l 
+    :         :   |-- upperarm_twist_end_l
     :         :   |-- lowerarm_l
-    :         :     |-- lowerarm_twist_01_l
+    :         :     |-- lowerarm_twist_correctiveRoot_l
+    :         :     |-- lowerarm_twist_end_l
     :         :     |-- lowerarm_twist_02_l
-    :         :     |-- lowerarm_twist_03_l 
+    :         :     |-- lowerarm_twist_middle_l
+    :         :     |-- lowerarm_twist_01_l
+    :         :     |-- lowerarm_twist_front_l
     :         :     |-- hand_l
-    :         :       |-- index_01_l
-    :         :         |-- index_02_l
-    :         :           |-- index_03_l
-    :         :       |-- middle_01_l
-    :         :         |-- middle_02_l
-    :         :           |-- middle_03_l
-    :         :       |-- pinky_01_l
-    :         :         |-- pinky_02_l
-    :         :           |-- pinky_03_l
-    :         :       |-- ring_01_l
-    :         :         |-- ring_02_l
-    :         :           |-- ring_03_l
+    :         :       |-- index_metacarpal_01_l
+    :         :         |-- index_01_l
+    :         :           |-- index_02_l
+    :         :             |-- index_03_l
+    :         :       |-- middle_metacarpal_l
+    :         :         |-- middle_01_l
+    :         :           |-- middle_02_l
+    :         :             |-- middle_03_l
+    :         :       |-- pinky_metacarpal_l
+    :         :         |-- pinky_01_l
+    :         :           |-- pinky_02_l
+    :         :             |-- pinky_03_l
+    :         :       |-- ring_metacarpal_l
+    :         :         |-- ring_01_l
+    :         :           |-- ring_02_l
+    :         :             |-- ring_03_l
     :         :       |-- thumb_01_l
     :         :         |-- thumb_02_l
     :         :           |-- thumb_03_l
     :         |-- clavicle_r
-    :         : |-- upperarm_r
-    :         :   |-- upperarm_twist_01_r
-    :         :   |-- upperarm_twist_02_r
-    :         :   |-- upperarm_twist_03_r 
-    :         :   |-- lowerarm_r
-    :         :     |-- lowerarm_twist_01_r
-    :         :     |-- lowerarm_twist_02_r
-    :         :     |-- lowerarm_twist_03_r 
-    :         :     |-- hand_r
-    :         :       |-- index_01_r
-    :         :         |-- index_02_r
-    :         :           |-- index_03_r
-    :         :       |-- middle_01_r
-    :         :         |-- middle_02_r
-    :         :           |-- middle_03_r
-    :         :       |-- pinky_01_r
-    :         :         |-- pinky_02_r
-    :         :           |-- pinky_03_r
-    :         :       |-- ring_01_r
-    :         :         |-- ring_02_r
-    :         :           |-- ring_03_r
-    :         :       |-- thumb_01_r
-    :         :         |-- thumb_02_r
-    :         :           |-- thumb_03_r                          
+    :         : |-- 오른쪽 팔 이하 생략                     
     :         |-- neck_01
     :           |-- neck_02 
     :             |-- head
     |-- thigh_l
+    : |-- thigh_correctiveRoot_l
+    : |-- thigh_twist_front_l
     : |-- thigh_twist_01_l
+    : |-- thigh_twist_middle_l
     : |-- thigh_twist_02_l 
+    : |-- thigh_twist_end_l
     : |-- calf_l
+    :   |-- calf_correctiveRoot_l
+    :   |-- calf_twist_end_l
+    :   |-- calf_twist_02_l
+    :   |-- calf_twist_middle_l
     :   |-- calf_twist_01_l
-    :   |-- calf_twist_02_l 
+    :   |-- calf_twist_front_l
     :   |-- foot_l
     :     |-- ball_l
+    :       |-- bigtoe_01_l
+    :         |-- bigtoe_02_l
+    :       |-- indextoe_01_l
+    :         |-- indextoe_02_l
+    :       |-- middletoe_01_l
+    :         |-- middletoe_02_l
+    :       |-- ringtoe_01_l
+    :         |-- ringtoe_02_l
+    :       |-- littletoe_01_l
+    :         |-- littletoe_02_l
     |-- thigh_r
-      |-- thigh_twist_01_r
-      |-- thigh_twist_02_r 
-      |-- calf_r
-        |-- calf_twist_01_r
-        |-- calf_twist_02_r 
-        |-- foot_r
-          |-- ball_r          
+      |-- 오른쪽 다리 이하 생략       
 </pre>
+
+위의 본 구조는 VLAST에서 제작되는 캐릭터가 반드시 지녀야 할 최소한의 본 구조입니다. 위 구조에서 바디 쉐입 보정 방식에 따라 메타휴먼 표준에서 사용되는 본들이 추가될 수 있습니다.  
+예를 들어 팔굼치가 굽혀질 때 추가적인 쉐입 보정이 모프타겟이 아니라 추가 본의 위치 조정으로 잡는 경우, 메타휴먼 표준에 따라 `lowerarm_bck_l`, `lowerarm_fwd_l`, `lowerarm_in_l`, `lowerarm_out_l` 본들이 VLAST 표준 본 구조 위에 추가될 수 있습니다. 바디 쉐입을 잡기 위해 본이 추가될 경우, 메타휴먼 표준을 벗어나는 본 네이밍은 허용되지 않습니다.  
+
+VLAST 표준 본 구조를 따라 캐릭터가 리깅되어야만, VLAST 프로젝트 내의 모든 캐릭터 관련 기능의 호환을 보장할 수 있습니다.  
 
 ### 8.2 모듈식 캐릭터 본 구조
 
@@ -1682,10 +1688,14 @@ VLAST는 캐릭터의 헤어, 상의, 하의, 신발 등을 자유롭게 교체�
 
 #### 8.2.1 `Body`, `Top`, `Bottom`, `Feet` 모듈
 
-`Body`, `Top`, `Bottom`, `Feet` 모듈들은 `Body`의 스켈레톤을 공유합니다.  
-새로 추가되는 상의, 하의 신발 등의 의상은 모두 베이스가 되는 `Body 본`에 할당되어 임포트됩니다.
+`Body`, `Top`, `Bottom`, `Feet` 모듈들은 모두 아래 경로의 스켈레톤을 공유합니다.  
+`프로젝트명/Content/VLAST/Core/CharacterSystem/Meshes/SKEL_VLAST_Standard.uasset`  
 
-`메시`는 다음과 같이 설정되어있어야 합니다.
+`Body`, `Top`, `Bottom`, `Feet` 스켈레탈 메시들은 모두 `SKEL_VLAST_Standard` 스켈레톤에 할당되어 임포트되어야 하며, 특별한 이유가 없는 한 본 구조는 `SKM_VLAST_Standard`와 동일해야 합니다.  
+
+만약 의상이 `SKM_VLAST_Standard`의 구조를 벗어나는 그 의상만의 독특한 추가 구조를 가지고 있는 경우에는 `SKEL_VLAST_Standard` 스켈레톤에 할당되어선 안됩니다. 예를 들어 후드티 의상의 모자와 끈에 본이 들어가있는 경우, 이 스켈레탈 메시는 스켈레톤을 새로 생성해 그 의상만의 자체 스켈레톤을 가지도록 임포트합니다.  
+
+각 모듈들의 `메시`는 다음과 같이 설정되어있어야 합니다.
 * Body : 헐벗거나 속옷만 입은 기본 바디 메시만 있어야 합니다.
 * Top : 상의 메시만 존재해야 합니다.
 * Bottom : 하의 메시만 존재해야 합니다.
@@ -1696,8 +1706,13 @@ VLAST는 캐릭터의 헤어, 상의, 하의, 신발 등을 자유롭게 교체�
 
 #### 8.2.2 `Face` 모듈
 
-`Face` 모듈은 별도의 스켈레톤을 가집니다.   
-모든 얼굴 리깅은 `face_root` 본 아래에 존재해야 합니다.  
+`Face` 모듈의 스켈레탈 메시는 메타휴먼의 얼굴 스켈레톤을 따라 제작되어야 합니다.  
+메타휴먼 얼굴 스켈레톤 에셋은 UE5 에디터 내에서 퀵셀 브릿지를 통해 메타휴먼 캐릭터를 추가한 뒤, 아래 경로에서 찾을 수 있습니다.  
+`프로젝트명/Content/MetaHumans/Common/Face/Face_Archetype_Skeleton.uasset`  
+
+메타휴먼 캐릭터는 너무 많은 얼굴 본을 가지고 있으므로, 얼굴 본 구조가 메타휴먼과 완벽히 일치할 필요는 없습니다.  
+메타휴먼 얼굴 본을 기반으로 캐릭터마다 실제로 사용되는 본만 지니고 있으면 되며, 본의 계층구조와 네이밍이 메타휴먼 캐릭터와 동일하면 됩니다.
+
 `Face 스켈레톤`은 `Body 스켈레톤`에서 팔다리가 제거되고, 얼굴 본이 추가됩니다. (어깨 본까지는 있음)
 
 *Face 모듈의 본 구조 예:*
@@ -1789,6 +1804,7 @@ VLAST는 UE5 프로젝트부터 루멘 또는 패스 트레이서를 사용합�
 - 나나이트와 루멘을 반영한 스태틱 메시 임포트, 라이팅 방식 추가
 22-05-23 1.2
 - BaseEngine.ini 공유 DCC 설정 삭제 (프로젝트별 config 설정으로 대체되었음)
+- 캐릭터 리깅 표준 업데이트
 
 
 **[⬆ Back to Top](#목차)**
